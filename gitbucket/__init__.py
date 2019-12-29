@@ -25,11 +25,14 @@ def create_app(test_config=None):
         pass
 
     # a silentmple page that says hello
-    @app.route('/hello')
-    def hello():
-        return 'Hello, World!'
+    @app.route('/')
+    def index():
+        return 'Hello, from index!'
 
     from . import db
     db.init_app(app)
+
+    from . import auth
+    app.register_blueprint(auth.bp)
 
     return app
