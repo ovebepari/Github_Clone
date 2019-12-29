@@ -1,6 +1,8 @@
 import os
 
-from flask import Flask
+from flask import Flask, g
+
+from . import auth
 
 
 def create_app(test_config=None):
@@ -25,9 +27,11 @@ def create_app(test_config=None):
         pass
 
     # a silentmple page that says hello
-    @app.route('/')
+    @app.route('/', methods=('GET', 'POST'))
     def index():
-        return 'Hello, from index!'
+        if g.user is not None:
+            return "User Logged in, supposed to go to the Dashboard!"
+        return auth.login()
 
     from . import db
     db.init_app(app)

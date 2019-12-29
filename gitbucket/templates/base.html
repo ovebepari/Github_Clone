@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='popper.min.js') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.js') }}">
 <nav>
-  <h1>Flaskr</h1>
   <ul>
     {% if g.user %}
       <li><span>{{ g.user['username'] }}</span>
