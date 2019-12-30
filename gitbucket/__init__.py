@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, g
+from flask import Flask, g, url_for
 
 from . import auth
 
@@ -30,7 +30,7 @@ def create_app(test_config=None):
     @app.route('/', methods=('GET', 'POST'))
     def index():
         if g.user is not None:
-            return "User Logged in, supposed to go to the Dashboard!"
+            return "User Logged in, supposed to go to the Dashboard!  <a href='{}'>Log out</a>".format(url_for('auth.logout'))
         return auth.login()
 
     from . import db

@@ -1,15 +1,28 @@
 {% extends 'base.html' %}
 
+{% block head %}
+  <style>
+      body{
+      	margin-left: -30px;
+      	margin-right: -30px;
+      }
+  </style>
+{% endblock %}
+
 {% block header %}
   <h1>{% block title %}Log In{% endblock %}</h1>
 {% endblock %}
 
 {% block content %}
-  <form method="post">
-    <label for="username">Username</label>
-    <input name="username" id="username" required>
-    <label for="password">Password</label>
-    <input type="password" name="password" id="password" required>
-    <input type="submit" value="Log In">
-  </form>
+
+<form class="form-signin" method="POST">
+  <img class="mb-4" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+  <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+  <label>Username</label>
+  <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+  <label>Password</label>
+  <input type="password"  class="form-control" placeholder="Password" name="password" required>
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+
 {% endblock %}
