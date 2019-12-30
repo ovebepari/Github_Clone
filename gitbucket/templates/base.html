@@ -1,38 +1,48 @@
 <!doctype html>
 <head>
-<title>{% block title %}{% endblock %} - Github Clone</title>
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+  <title>{% block title %}{% endblock %} - Github Clone</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='jquery.min.js') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='popper.min.js') }}">
-<link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.js') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='jquery.min.js') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='popper.min.js') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.js') }}">
 
-<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-{% block head %} {% endblock %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  {% block head %} {% endblock %}
 </head>
 
 <body>
-  <nav>
-    <ul>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="{{ url_for('index') }}"> <span style="font-family: ;">Git Clone</span> </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-md-auto">
       {% if g.user %}
-        <li><span>{{ g.user['username'] }}</span>
-        <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
-      {% else %}
-        <li><a href="{{ url_for('auth.register') }}">Register</a>
-        <li><a href="{{ url_for('auth.login') }}">Log In</a>
+        <li class="nav-item">
+          <span>Welcome {{ g.user['username'] }}</span>
+          <a class="nav-link" href="{{ url_for('auth.logout') }}">Log Out</a>
+        </li>
+      {% else %}  
+      <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.register') }}">Register</a>
+      </li> 
+      <li class="nav-item">
+          <a class="nav-link" href="{{ url_for('auth.login') }}">Log In</a>
+      </li>
       {% endif %}
-    </ul>
+      </ul>
+    </div>
   </nav>
-  <section class="content">
-    <header>
-      {% block header %}{% endblock %}
-    </header>
+
+  <section class="middle">
     {% for message in get_flashed_messages() %}
-      <div class="flash">{{ message }}</div>
+      <div class="flash alert alert-warning">{{ message }}</div>
     {% endfor %}
+
     {% block content %}{% endblock %}
-
-
   </section>
 </body>
 </html>

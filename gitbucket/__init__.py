@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, g, url_for
+from flask import Flask, g, url_for, render_template
 
 from . import auth
 
