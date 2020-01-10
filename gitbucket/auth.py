@@ -6,6 +6,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from gitbucket.db import get_db
+from . import dashboard
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -59,7 +60,7 @@ def login():
         if error is None:
             session.clear()
             session['user_id'] = user['id']
-            return redirect(url_for('index'))
+            return redirect(url_for('dashboard.index'))
 
         flash(error)
 
@@ -81,4 +82,4 @@ def load_logged_in_user():
 @bp.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('index'))
+    return redirect(url_for('dashboard.index'))

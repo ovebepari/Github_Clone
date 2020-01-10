@@ -26,17 +26,11 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    # a silentmple page that says hello
-    @app.route('/', methods=('GET', 'POST'))
-    def index():
-        if g.user is not None:
-            return "User Logged in, supposed to go to the Dashboard!  <a href='{}'>Log out</a>".format(url_for('auth.logout'))
-        return auth.login()
-
     from . import db
     db.init_app(app)
 
-    from . import auth
+    from . import auth, dashboard
     app.register_blueprint(auth.bp)
+    app.register_blueprint(dashboard.dashbp)
 
     return app
