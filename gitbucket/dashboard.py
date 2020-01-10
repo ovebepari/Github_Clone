@@ -10,7 +10,7 @@ dashbp = Blueprint('dashboard', __name__, url_prefix=None)
 
 @dashbp.route('/', methods=('GET', 'POST'))
 def index():
-    if g.user is not None:
+    if g.user is not None: # A User is Logged In
     	return render_template('dashboard/index.html')
     return auth.login()
 

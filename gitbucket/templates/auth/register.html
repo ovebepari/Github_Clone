@@ -3,10 +3,19 @@
 {% block content %}
   <form class="form-signin" method="post">
     <h1 class="h3 mb-3 font-weight-normal">{% block title %}Register{% endblock %}</h1>
+    
     <label for="username">Username</label>
     <input class="form-control" name="username" id="username" placeholder="Username" required>
+    
+    <label for="username">Email</label>
+    <input class="form-control" name="email" id="email" placeholder="Email" required>
+    
     <label for="password">Password</label>
     <input class="form-control" type="password" name="password" id="password" placeholder="Password" required>
+
+    <label for="Bio">Bio</label>
+    <input class="form-control" type="text" name="bio" id="bio" placeholder="Bio" required>
+    
     <input class="btn btn-lg btn-primary btn-block" type="submit" value="Register">
   </form>
 {% endblock %}
