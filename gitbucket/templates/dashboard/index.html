@@ -8,7 +8,7 @@
 	<!-- Profile Image Section-->	
 		
 		<div class="card" style="">
-		  <img src="{{ url_for('static', filename='images/dummy.jpeg') }}" class="card-img-top" alt="...">
+		  <img src="{{ avatar }}" class="card-img-top" alt="...">
 		  <div class="card-body">
 		    <h5 class="card-title"> {% block title %} {{ g.user['username'] }} {% endblock %} </h5>
 		    <p class="card-text">{{ g.user['bio'] }}</p>
@@ -22,15 +22,16 @@
 		<h3 style="margin-bottom: 20px;">Repositiories</h3>
 		{% if repositories is defined and repositories|length %}
 			{% for repo in repositories %}
-			<div class="card" style="margin-bottom: 20px;">
-			  <div class="card-body">
-			    <h5 class="card-title">{{ repo }}</h5>
-			    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-			    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-			    <a href="#" class="card-link">Card link</a>
-			    <a href="#" class="card-link">Another link</a>
-			  </div>
-			</div>
+			<a href="./{{repo['name'] | escape }}" class="card-link">
+				<div class="card" style="margin-bottom: 0px;">
+				  <div class="card-body">
+				    <h5 class="card-title">{{ repo['name'] }}</h5>
+				    <h6 class="card-subtitle mb-2 text-muted"> {{ repo['description'] }} </h6>
+				    <p class="card-text"></p>
+				    	
+				  </div>
+				</div>
+			</a>
 			{% endfor %}
 		{% else %}
 			<div class="alert alert-warning">No repositories</div>
