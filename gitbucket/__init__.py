@@ -1,8 +1,8 @@
 import os
 
-from flask import Flask, g, url_for, render_template
+from flask import Flask, g, url_for, render_template, redirect
 
-from . import auth
+from . import auth, dashboard
 
 
 def create_app(test_config=None):
@@ -32,5 +32,11 @@ def create_app(test_config=None):
     from . import auth, dashboard
     app.register_blueprint(auth.bp)
     app.register_blueprint(dashboard.dashbp)
+
+
+    # Redirecting every requests to datshboard.index
+    @app.route('/')
+    def index():
+        return redirect(url_for('dashboard.index'))
 
     return app

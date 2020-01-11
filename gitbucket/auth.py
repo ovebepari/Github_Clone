@@ -10,7 +10,6 @@ from . import dashboard
 
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
-
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -37,6 +36,23 @@ def register():
                 (username, generate_password_hash(password), email, bio)
             )
             db.commit()
+
+            # Create a folder in ~/_gitrepositories_ for the user
+            # to host git repositories
+            import os
+            try:
+                repository_folder = os.environ.get('HOME', "Not Found") + "/_gitrepositories_/"
+
+                if not os.path.exists(repository_folder):
+                    os.mkdir(repository_folder)
+
+                os.mkdir(repository_folder + '/' + username)
+
+            except:
+                error = "User Creation Failed!"
+                flush(error)
+
+
             return redirect(url_for('auth.login'))
 
         flash(error)
