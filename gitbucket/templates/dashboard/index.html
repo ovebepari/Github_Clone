@@ -22,7 +22,7 @@
 		<h3 style="margin-bottom: 20px;">Repositiories</h3>
 		{% if repositories is defined and repositories|length %}
 			{% for repo in repositories %}
-			<a href="./{{repo['name'] | escape }}" class="card-link">
+			<a href="./{{ repo['name'] | escape }}" class="card-link">
 				<div class="card" style="margin-bottom: 0px;">
 				  <div class="card-body">
 				    <h5 class="card-title">{{ repo['name'] }}</h5>

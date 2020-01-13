@@ -1,11 +1,20 @@
-$ export FLASK_APP=gitbucket
-$ export FLASK_ENV=development
+For Flask: 
 
-Then for flask db and server: 
+    $ export FLASK_APP=gitbucket
+    $ export FLASK_ENV=development
 
-    $ flask init-db
-    $ flask run
+    Then for flask db and server: 
 
-Make Required Folders:
+        $ flask init-db
+        $ flask run
+
+    Make Required Folders:
+        
+        $ mkdir ~/_gitrepositories_ 
+
+Making a dumb git server: (on .git folder)    
+
+    $ mv hooks/post-update.sample hooks/post-update
+    $ chmod a+x hooks/post-update
     
-    $ mkdir ~/_gitrepositories_ 
+    $ git update-server-info 

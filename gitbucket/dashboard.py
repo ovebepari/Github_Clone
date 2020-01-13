@@ -29,7 +29,11 @@ def index():
 
                 repo = {}
                 repo['name'] = file
-                repo['description'] = desc[2]
+                
+                if len(desc) >= 2:
+                    repo['description'] = desc[2]
+                else:
+                    repo['description'] = "No description!"
 
                 repositories.append(repo)
              
@@ -54,12 +58,12 @@ def index():
     return auth.login()
 
 
-@dashbp.route("/<path:repository>", methods=('GET',))
+@dashbp.route("/<repository>", methods=('GET','POST'))
 def show_repo(repository=None):
     repository_folder = os.environ.get('HOME', "Not Found") + "/_gitrepositories_/"
     username = g.user['username']
 
-    path = repository_folder + username + "/" + repository.split('/')[0]
+    path = repository_folder + username + "/" + repository
 
     try:
         stream = os.popen('tree -L 3 ' + path)
@@ -67,5 +71,9 @@ def show_repo(repository=None):
     except:
         tree = "No directory structure found. </br>The tree command didn't run properly."
     tree.replace('\n', '</br>')
+
+    if request.method == 'POST':
+        path += "/.git/"
+        os.system("gnome-terminal --working-directory " + path + " -x python3 -m http.server")
 
     return render_template("dashboard/repository.html", path=path, tree=tree)
