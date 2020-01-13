@@ -40,12 +40,11 @@ def index():
          
         # Set your variables here
         email = g.user['email'].encode('utf-8')
-        default = "https://www.example.com/default.jpg".encode('utf-8')
         size = 400
          
         # construct the url
         gravatar_url = "https://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
-        gravatar_url += urllib.parse.urlencode(({'d':default, 's':str(size)}))
+        gravatar_url += urllib.parse.urlencode(({'s':str(size)}))
 
         return render_template('dashboard/index.html',
                                repositories=repositories,
@@ -63,7 +62,7 @@ def show_repo(repository=None):
     path = repository_folder + username + "/" + repository.split('/')[0]
 
     try:
-        stream = os.popen('tree ' + path)
+        stream = os.popen('tree -L 3 ' + path)
         tree = stream.read()
     except:
         tree = "No directory structure found. </br>The tree command didn't run properly."
