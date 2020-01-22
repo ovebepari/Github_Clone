@@ -2,6 +2,29 @@
 
 
 {% block content %}
+<div class="row">
+	<nav class="navbar navbar-expand-lg navbar-light">
+	    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+	      <ul class="navbar-nav ml-md-auto">
+
+	        <li class="nav-item">
+	        	<form method="POST">
+					<button class="btn nav-link" type="submit"> &#9282; Clone</button>
+				</form>
+	        </li>
+	        
+	        <li class="nav-item">
+				<button class="btn">
+					<a style="text-decoration: none; color:red;" href="/repositories/delete">  &#x1F5D1; Delete  </a>
+				</button>
+	        </li>
+	        
+
+	      </ul>
+	    </div>
+  	</nav>
+</div>
+
 	
 <div class="row" style="margin-top: 10px;">
 	<div class="col-sm-2"></div>					
@@ -14,11 +37,7 @@
 	</div>
 
 
-	<div class="col-sm-2">
-		<form method="POST">
-			<button class="btn btn-primary btn-block" type="submit">Clone</button>
-		</form>
-	</div>					
+	<div class="col-sm-2"></div>					
 
 </div>
 

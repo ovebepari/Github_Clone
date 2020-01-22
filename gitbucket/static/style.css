@@ -17,6 +17,13 @@ body {
   margin: auto;
 }
 
+
+div.container{
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+}
+
 .form-signin, .middle{
   width: 100%;
   max-width: 330px;

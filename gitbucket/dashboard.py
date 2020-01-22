@@ -25,15 +25,17 @@ def index():
                 # will be a dictionary
                 repo_path = user_repo_dir + file + "/.git"
                 
-                desc = open(repo_path + '/description', "r").readlines()
-
                 repo = {}
+                
+                desc = "No Description"
+                if os.path.exists(repo_path + '/description'):
+                    desc = open(repo_path + '/description', "r").readlines()
+                    if len(desc) >= 2:
+                        repo['description'] = desc[2]
+
+                
                 repo['name'] = file
                 
-                if len(desc) >= 2:
-                    repo['description'] = desc[2]
-                else:
-                    repo['description'] = "No description!"
 
                 repositories.append(repo)
              
