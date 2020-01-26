@@ -15,7 +15,7 @@
 	        
 	        <li class="nav-item">
 				<button class="btn">
-					<a style="text-decoration: none; color:red;" href="/repositories/delete">  &#x1F5D1; Delete  </a>
+					<a style="text-decoration: none; color:red;" href="/repository/delete?reponame={{ reponame }}">  &#x1F5D1; Delete  </a>
 				</button>
 	        </li>
 	        
@@ -32,7 +32,7 @@
 	<div class="col-sm">
 		<!-- Repository Sectio-->	
 		<h5 style="margin-bottom: 20px;">Repositiory File Structure</h5>
-		{{ path }}
+		
 		<pre>{{ tree }}</pre>
 	</div>
 

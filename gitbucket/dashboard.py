@@ -12,7 +12,6 @@ dashbp = Blueprint('dashboard', __name__, url_prefix="/dashboard")
 @dashbp.route('/', methods=('GET', 'POST'))
 def index():
     if g.user is not None: # A User is Logged In
-
         repository_folder = os.environ.get('HOME', "Not Found") + "/_gitrepositories_/"
         username = g.user['username']
 
@@ -30,7 +29,7 @@ def index():
                 desc = "No Description"
                 if os.path.exists(repo_path + '/description'):
                     desc = open(repo_path + '/description', "r").readlines()
-                    if len(desc) >= 2:
+                    if len(desc) >= 3:
                         repo['description'] = desc[2]
 
                 
@@ -78,4 +77,4 @@ def show_repo(repository=None):
         path += "/.git/"
         os.system("gnome-terminal --working-directory " + path + " -x python3 -m http.server")
 
-    return render_template("dashboard/repository.html", path=path, tree=tree)
+    return render_template("dashboard/repository.html", path=path, tree=tree, reponame=repository)

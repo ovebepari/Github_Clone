@@ -29,10 +29,11 @@ def create_app(test_config=None):
     from . import db
     db.init_app(app)
 
-    from . import auth, dashboard, repository
+    from . import auth, dashboard, repository, global_profile
     app.register_blueprint(auth.bp)
     app.register_blueprint(dashboard.dashbp)
     app.register_blueprint(repository.repo_bp)
+    app.register_blueprint(global_profile.global_profileBP)
 
 
     # Redirecting every requests to datshboard.index

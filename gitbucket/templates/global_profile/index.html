@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+	
+<div class="row" style="margin-top: 10px;">
+	<div class="col-sm-4">
+	<!-- Profile Image Section-->	
+		
+		<div class="card" style="">
+		  <img src="{{ avatar }}" class="card-img-top" alt="...">
+		  <div class="card-body">
+		    <h5 class="card-title"> {% block title %} {{ g.global_user['username'] }} {% endblock %} </h5>
+		    <p class="card-text">{{ g.global_user['bio'] }}</p>
+		  </div>
+		</div>
+
+	</div>					
+
+	<div class="col-sm">
+
+		{% if g.user %}
+		<nav class="navbar navbar-expand-lg navbar-light">
+		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+		      <ul class="navbar-nav ml-md-auto">
+
+		        <li class="nav-item">
+					<a class="btn nav-link btn-block" href="/repository/new"> &plus; New Repository</a>
+		        </li>
+
+		      </ul>
+		    </div>
+
+	  	</nav>
+		{% endif %}
+
+	<!-- Repository Sectio-->	
+		<h3 style="margin-bottom: 20px;">Repositiories</h3>
+		{% if repositories is defined and repositories|length %}
+			{% for repo in repositories %}
+			<a href="./{{ repo['name'] | escape }}" class="card-link">
+				<div class="card" style="margin-bottom: 0px;">
+				  <div class="card-body">
+				    <h5 class="card-title">{{ repo['name'] }}</h5>
+				    <h6 class="card-subtitle mb-2 text-muted"> {{ repo['description'] }} </h6>
+				    <p class="card-text"></p>
+				    	
+				  </div>
+				</div>
+			</a>
+			{% endfor %}
+		{% else %}
+			<div class="alert alert-warning">No repositories</div>
+		{% endif %}
+
+	</div>
+
+</div>
+
+
+{% endblock %}
